@@ -1,0 +1,14 @@
+{
+  "name": "video13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tamas Piros - https://fullstack-developer.academy",
+  "license": "ISC",
+  "devDependencies": {
+    "winston": "^2.4.0"
+  }
+}

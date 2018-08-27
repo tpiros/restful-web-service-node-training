@@ -1,0 +1,13 @@
+{
+  "name": "video12",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "hello": "node -e 'console.log(\"hello from inside package.json\")'"
+  },
+  "author": "Tamas Piros - https://fullstack-developer.academy",
+  "license": "ISC"
+}
