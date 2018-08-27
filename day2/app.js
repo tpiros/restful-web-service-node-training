@@ -11,9 +11,20 @@ const url = `mongodb://${settings.host}:${settings.port}`;
 const port = 3000;
 
 app.use(bodyParser.json());
+
+const cors = require('cors');
+const corsOptions = {
+  origin: 'http://localhost:8080'
+};
+
+app.use(cors(corsOptions));
+
 router.get('/characters', routes.showCharacters);
-router.get('/characters/:id', routes.authenticate, routes.showOneCharacter)
+router.get('/characters/:id', routes.showOneCharacter)
 router.post('/characters', routes.addCharacter);
+router.put('/characters/:id', routes.updateCharacter);
+router.patch('/characters/:id', routes.patchCharacter);
+router.delete('/characters/:id', routes.deleteCharacter);
 app.use('/api', router);
 
 
