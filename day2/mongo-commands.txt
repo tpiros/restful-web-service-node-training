@@ -1,0 +1,43 @@
+./mongoexport --db star-wars --collection characters --out characters.json --host localhost:32768
+./mongoimport --db star-wars --collection characters --type json --host localhost:32768 --file characters.json
+
+db.characters.insert({
+  name: 'John', homeworld: 'Earth'
+});
+
+db.characters.insertMany([
+  { name: 'John', homeworld: 'Earth' },
+  { name: 'Darth Adam', homeworld: 'Tatooine' }
+]);
+
+// find all
+db.characters.find({});
+
+// find specific item
+db.characters.find( { name: 'John' });
+db.characters.findOne({ _id: id });
+db.characters.find( { name: { $in: ['John', 'Han Solo' ]}});
+db.characters.find({
+  $and: [
+    { role: 'Jedi' },
+    { height: { $lt: 1.70 }}
+  ]
+})
+db.characters.find( { $or: [ { role: 'Jedi' }, { role: 'Scavenger' } ]})
+
+db.characters.find({}, { role: 1, _id: 0 });
+db.characters.find({}, { role: 1, height: 1, name: 1, _id: 0 }).sort({ height: 1 }); 
+
+
+// admin related commands
+db.characters.stats()
+db.printCollectionStats()
+
+db.characters.latencyStats()
+db.characters.totalIndexSize() // Total size of all indexes in collection
+db.characters.dataSize() // collection size
+db.characters.storageSize() // Total size of documents stored in collection
+db.characters.totalSize() // Total size in bytes (collection data + indexes)
+
+// create indexes
+db.characters.createIndex( {name: -1 });
