@@ -1,6 +1,11 @@
 ./mongoexport --db star-wars --collection characters --out characters.json --host localhost:32768
 ./mongoimport --db star-wars --collection characters --type json --host localhost:32768 --file characters.json
 
+show dbs;
+show collections;
+use star-wars; //use <db-name>
+db.createCollection('characters');
+
 db.characters.insert({
   name: 'John', homeworld: 'Earth'
 });
@@ -28,6 +33,28 @@ db.characters.find( { $or: [ { role: 'Jedi' }, { role: 'Scavenger' } ]})
 db.characters.find({}, { role: 1, _id: 0 });
 db.characters.find({}, { role: 1, height: 1, name: 1, _id: 0 }).sort({ height: 1 }); 
 
+// replace entire document
+db.characters.update({ _id: id}, { "name": "John"});
+// set part of the document (update specific fields)
+db.characters.update({ _id: id}, { $set: { "name": "John" } });
+
+// update, otherwise insert if doesn't exist
+db.characters.update(
+   { name: "John" },
+   {
+     item: "John",
+     homeworld: "Earth"
+   },
+   { upsert: true }
+);
+
+// update by matching query
+db.characters.update(
+   { height: { $lte: 1.70 } },
+   { $set: { homeworld: "Earth" } },
+   { multi: true }
+);
+
 
 // admin related commands
 db.characters.stats()
@@ -38,6 +65,8 @@ db.characters.totalIndexSize() // Total size of all indexes in collection
 db.characters.dataSize() // collection size
 db.characters.storageSize() // Total size of documents stored in collection
 db.characters.totalSize() // Total size in bytes (collection data + indexes)
+db.dropDatabase(); // drops DB
+db.characters.drop(); // drop Collection
 
 // create indexes
 db.characters.createIndex( {name: -1 });
