@@ -87,7 +87,7 @@ function patchCharacter(req, res) {
         if (character.result.n === 0) {
           return res.status(404).json(`Character with ${id} not found.`);
         } else {
-          return res.status(204).json(`Character with ${id} patched.`);
+          return res.status(204).json();
         }
       })
       .catch(error => console.error(error));

@@ -8,15 +8,24 @@
   <meta name="author" content="Tamas Piros">
   <link rel="stylesheet" href="">
   <script>
-    const responseEl = document.getElementById('response');
-    fetch('http://localhost:3000/api/characters')
+    
+    fetch('http://localhost:3000/api/characters/5b853a6cb962ab2b8d2686e7')
       .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
+
+    // fetch('http://localhost:3000/api/characters/5b853a6cb962ab2b8d2686e7', {
+    //   headers: {
+    //     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzU0ODczMjQsInVzZXJuYW1lIjoidGFtYXMiLCJpYXQiOjE1MzU0ODM3MjR9.krQwHvvc-oJB1UhJuJOFCcXYqQvah98m2iBXS5RgtXw'
+    //   }
+    // })
+    //   .then(response => response.json())
+    //   .then(data => console.log(data))
+    //   .catch(error => console.error(error));
   </script>
 </head>
 
 <body>
-<div id="response"></div>
+
 </body>
 </html>
